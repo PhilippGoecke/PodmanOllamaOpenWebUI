@@ -1,7 +1,7 @@
 # PodmanOllamaOpenWebUI
 Podman Ollama OpenWebUI
 
-bash podman-run-ollama.bash  
+bash podman-run-ollama-nvidia.bash  
 bash podman-run-open-webui.bash  
 ollama ps  
 
