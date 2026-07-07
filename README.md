@@ -5,6 +5,7 @@ bash podman-run-ollama.bash
 bash podman-run-open-webui.bash  
 ollama ps  
 
+nvidia:
 ```bash
 sed -i 's/ main$/ main contrib non-free/' /etc/apt/sources.list
 apt update
@@ -22,4 +23,12 @@ nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
 
 curl -fsSL https://github.com/ollama/ollama/releases/download/v0.30.11/ollama-linux-amd64.tar.zst | tar x --zstd -C /usr/local/
 chmod +x /usr/local/bin/ollama
+
+bash podman-run-ollama-nvidia.bash
+```
+
+amd:
+```bash
+# https://buihanotes.com/posts/run-ollama-with-amd-gpu-ubuntu-24-04/
+bash podman-run-ollama-amd.bash
 ```
