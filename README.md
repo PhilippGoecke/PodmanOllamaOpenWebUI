@@ -41,7 +41,7 @@ apt update
 apt install -y linux-headers-$(uname -r) amdgpu-dkms
 
 apt update
-apt install -y rocm-smi
+apt install -y rocm-smi radeontop nvtop
 
 # https://buihanotes.com/posts/run-ollama-with-amd-gpu-ubuntu-24-04/
 bash podman-run-ollama-amd.bash
