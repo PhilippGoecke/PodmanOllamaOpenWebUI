@@ -32,6 +32,14 @@ nvidia-smi
 amd:
 ```bash
 # https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/install/detailed-install/package-manager/package-manager-debian.html
+mkdir --parents --mode=0755 /etc/apt/keyrings
+wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | tee /etc/apt/keyrings/rocm.gpg > /dev/null
+tee /etc/apt/sources.list.d/amdgpu.list << EOF
+deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/30.30.4/ubuntu noble main
+EOF
+apt update
+apt install amdgpu-dkms
+
 apt update
 apt install -y rocm-smi
 
