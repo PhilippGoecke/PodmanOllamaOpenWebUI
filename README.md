@@ -25,10 +25,18 @@ curl -fsSL https://github.com/ollama/ollama/releases/download/v0.30.11/ollama-li
 chmod +x /usr/local/bin/ollama
 
 bash podman-run-ollama-nvidia.bash
+
+nvidia-smi
 ```
 
 amd:
 ```bash
+# https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/install/detailed-install/package-manager/package-manager-debian.html
+apt update
+apt install -y rocm-smi
+
 # https://buihanotes.com/posts/run-ollama-with-amd-gpu-ubuntu-24-04/
 bash podman-run-ollama-amd.bash
+
+rocm-smi
 ```
