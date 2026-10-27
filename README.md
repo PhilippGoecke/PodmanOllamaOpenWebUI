@@ -11,6 +11,7 @@ sed -i 's/ main$/ main contrib non-free/' /etc/apt/sources.list
 apt update
 apt install tmux htop podman git curl
 apt install -y linux-headers-$(uname -r) nvidia-driver firmware-misc-nonfree nvidia-smi nvidia-cuda-toolkit
+pacman -Suy linux-headers nvidia-utils cuda nvidia-container-toolkit
 
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
 curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
