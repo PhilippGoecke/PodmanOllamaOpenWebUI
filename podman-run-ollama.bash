@@ -87,3 +87,6 @@ done
 #   },
 #   "model": "ollama/qwen2.5-coder:7b"
 # }
+
+# Check running models: podman exec ollama ollama ps
+podman logs -f ollama
