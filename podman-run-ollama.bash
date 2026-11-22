@@ -71,6 +71,12 @@ done
 # OpenCode config (e.g. ~/.config/opencode/opencode.json):
 # {
 #   "$schema": "https://opencode.ai/config.json",
+#   "permission": {
+#     "edit": "allow",
+#     "patch": "allow",
+#     "write": "allow",
+#     "multiedit": "allow"
+#   },
 #   "provider": {
 #     "ollama": {
 #       "npm": "@ai-sdk/openai-compatible",
