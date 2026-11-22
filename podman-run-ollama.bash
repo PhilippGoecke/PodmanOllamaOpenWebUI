@@ -86,12 +86,12 @@ done
 #         "apiKey": "SecureSharedSecret"
 #       },
 #       "models": {
-#         "qwen2.5-coder:7b": { "name": "Qwen2.5-Coder-7B" },
+#         "qwen3-coder:30b": { "name": "Qwen3-Coder-30B" },
 #         "qwen2.5-coder:1.5b": { "name": "Autocomplete-Coder" }
 #       }
 #     }
 #   },
-#   "model": "ollama/qwen2.5-coder:7b"
+#   "model": "ollama/qwen3-coder:30b"
 # }
 
 # Check running models: podman exec ollama ollama ps
