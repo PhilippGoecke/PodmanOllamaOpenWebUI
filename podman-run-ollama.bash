@@ -37,6 +37,7 @@ podman run --detach \
 # models:
 #   - name: Qwen2.5-Coder-7B
 #     provider: ollama
+#     apiKey: SecureSharedSecret
 #     model: qwen2.5-coder:7b
 #     apiBase: http://localhost:11434
 #     roles:
@@ -47,6 +48,7 @@ podman run --detach \
 #       maxTokens: 2048
 #   - name: Autocomplete-Coder
 #     provider: ollama
+#     apiKey: SecureSharedSecret
 #     model: qwen2.5-coder:1.5b
 #     apiBase: http://localhost:11434
 #     roles:
