@@ -10,17 +10,18 @@ fi
 
 podman run --detach \
   --pull newer \
+  --security-opt label=type:container_runtime_t \
   --replace \
   --restart unless-stopped \
-  "${GPU_ARGS[@]}" \
-  --env OLLAMA_DEBUG=1 \
+  --group-add keep-groups \
+  "${GPU_ARGS[@]}" \  --env OLLAMA_DEBUG=1 \
   --env OLLAMA_API_KEY="SecureSharedSecret" \
   --env OLLAMA_KEEP_ALIVE=24h \
   --env OLLAMA_FLASH_ATTENTION=1 \
   --env OLLAMA_NUM_PARALLEL=1 \
   --env OLLAMA_MAX_LOADED_MODELS=1 \
   --volume "$(pwd)/ollama_data:/root/.ollama:Z" \
-  --publish 127.0.0.1:11434:11434 \
+  --publish 11434:11434 \
   --name ollama \
   docker.io/ollama/ollama:latest
 
