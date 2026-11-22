@@ -56,3 +56,28 @@ podman run --detach \
 #     defaultCompletionOptions:
 #       contextLength: 2048
 #       maxTokens: 256
+
+# OpenCode config (e.g. ~/.config/opencode/opencode.json):
+# {
+#   "$schema": "https://opencode.ai/config.json",
+#   "provider": {
+#     "ollama": {
+#       "npm": "@ai-sdk/openai-compatible",
+#       "name": "Ollama",
+#       "options": {
+#         "baseURL": "http://localhost:11434/v1",
+#         "apiKey": "SecureSharedSecret"
+#       },
+#       "models": {
+#         "qwen2.5-coder:7b": {
+#           "name": "Qwen2.5-Coder-7B"
+#         },
+#         "qwen2.5-coder:1.5b": {
+#           "name": "Autocomplete-Coder"
+#         }
+#       }
+#     }
+#   },
+#   "model": "ollama/qwen2.5-coder:7b"
+# }
+
