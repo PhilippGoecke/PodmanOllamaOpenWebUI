@@ -9,7 +9,7 @@ GPU_ARGS=()
 OLLAMA_IMAGE="docker.io/ollama/ollama:latest"
 if command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi -L >/dev/null 2>&1; then
   GPU_ARGS+=(--device nvidia.com/gpu=all)
-elif [[ --device /dev/kfd && --device /dev/dri ]]; then
+elif [[ -e /dev/kfd && -d /dev/dri ]]; then
   GPU_ARGS+=(--device /dev/kfd --device /dev/dri)
   OLLAMA_IMAGE="docker.io/ollama/ollama:rocm"
 fi
