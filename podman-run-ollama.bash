@@ -2,10 +2,12 @@ mkdir -p "$(pwd)/ollama_data"
 
 # Select available GPU devices (Bash).
 GPU_ARGS=()
+OLLAMA_IMAGE=docker.io/ollama/ollama:latest
 if command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi -L >/dev/null 2>&1; then
   GPU_ARGS+=(--device nvidia.com/gpu=all)
 elif [ -e /dev/kfd ] && [ -d /dev/dri ]; then
   GPU_ARGS+=(--device /dev/kfd --device /dev/dri)
+  OLLAMA_IMAGE=docker.io/ollama/ollama:rocm
 fi
 
 podman run --detach \
@@ -14,7 +16,8 @@ podman run --detach \
   --replace \
   --restart unless-stopped \
   --group-add keep-groups \
-  "${GPU_ARGS[@]}" \  --env OLLAMA_DEBUG=1 \
+  "${GPU_ARGS[@]}" \
+  --env OLLAMA_DEBUG=1 \
   --env OLLAMA_API_KEY="SecureSharedSecret" \
   --env OLLAMA_KEEP_ALIVE=24h \
   --env OLLAMA_FLASH_ATTENTION=1 \
@@ -23,7 +26,7 @@ podman run --detach \
   --volume "$(pwd)/ollama_data:/root/.ollama:Z" \
   --publish 11434:11434 \
   --name ollama \
-  docker.io/ollama/ollama:latest
+  "$OLLAMA_IMAGE"
 
 # Pull a model once before using it in VS Code Continue.
 # podman exec ollama ollama pull qwen2.5-coder:7b
