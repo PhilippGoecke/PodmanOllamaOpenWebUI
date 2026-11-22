@@ -19,10 +19,12 @@ podman run --detach \
   "${GPU_ARGS[@]}" \
   --env OLLAMA_DEBUG=1 \
   --env OLLAMA_API_KEY="SecureSharedSecret" \
-  --env OLLAMA_KEEP_ALIVE=24h \
+  --env OLLAMA_KEEP_ALIVE=-1 \
   --env OLLAMA_FLASH_ATTENTION=1 \
   --env OLLAMA_NUM_PARALLEL=1 \
-  --env OLLAMA_MAX_LOADED_MODELS=1 \
+  --env OLLAMA_MAX_LOADED_MODELS=2 \
+  --env OLLAMA_KV_CACHE_TYPE=q8_0 \
+  --env OLLAMA_CONTEXT_LENGTH=65536 \
   --volume "$(pwd)/ollama_data:/root/.ollama:Z" \
   --publish 11434:11434 \
   --name ollama \
@@ -33,7 +35,20 @@ podman run --detach \
 
 # Continue config (e.g. ~/.continue/config.yaml):
 # models:
-#   - title: Qwen 2.5 Coder 7B
+#   - name: Qwen2.5-Coder-7B
 #     provider: ollama
 #     model: qwen2.5-coder:7b
-#     apiBase: http://127.0.0.1:11434
+#     roles:
+#       - chat
+#       - edit
+#     defaultCompletionOptions:
+#       contextLength: 8192
+#       maxTokens: 2048
+#   - name: Autocomplete-Coder
+#     provider: ollama
+#     model: qwen2.5-coder:1.5b
+#     roles:
+#       - autocomplete
+#     defaultCompletionOptions:
+#       contextLength: 2048
+#       maxTokens: 256
