@@ -38,6 +38,7 @@ podman run --detach \
 #   - name: Qwen2.5-Coder-7B
 #     provider: ollama
 #     model: qwen2.5-coder:7b
+#     apiBase: http://localhost:11434
 #     roles:
 #       - chat
 #       - edit
@@ -47,6 +48,7 @@ podman run --detach \
 #   - name: Autocomplete-Coder
 #     provider: ollama
 #     model: qwen2.5-coder:1.5b
+#     apiBase: http://localhost:11434
 #     roles:
 #       - autocomplete
 #     defaultCompletionOptions:
