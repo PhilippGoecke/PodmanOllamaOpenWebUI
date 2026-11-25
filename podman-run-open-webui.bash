@@ -1,11 +1,18 @@
-mkdir -p $(pwd)/webui_data
+set -euo pipefail
 
-podman run --detach --pull newer --replace --publish 8080:8080 \
-  -e OLLAMA_BASE_URL=http://host.containers.internal:11434 -e OLLAMA_API_KEY=SecureSharedSecret \
-  -e WEBUI_SECRET_KEY=change-me-to-a-long-random-secret -e ENABLE_SIGNUP=false \
-  -e WEBUI_ADMIN_EMAIL="admin@openwebui.local" \
-  -e WEBUI_ADMIN_PASSWORD="SecurePassword123" \
-  -v $(pwd)/webui_data:/app/backend/data \
-  -e WEBUI_AUTH=True \
-  --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-  
+readonly data_dir="${PWD}/webui_data"
+mkdir -p "$data_dir"
+
+podman run --detach --replace --pull newer \
+  --name open-webui \
+  --restart always \
+  --publish 8080:8080 \
+  --env OLLAMA_BASE_URL=http://host.containers.internal:11434 \
+  --env OLLAMA_API_KEY=SecureSharedSecret \
+  --env WEBUI_SECRET_KEY=change-me-to-a-long-random-secret \
+  --env ENABLE_SIGNUP=false \
+  --env WEBUI_AUTH=true \
+  --env WEBUI_ADMIN_EMAIL=admin@openwebui.local \
+  --env WEBUI_ADMIN_PASSWORD=SecurePassword123 \
+  --volume "$data_dir:/app/backend/data" \
+  ghcr.io/open-webui/open-webui:main
