@@ -25,6 +25,7 @@ podman run --detach \
   --health-start-period 20s \
   --health-retries 3 \
   "${GPU_ARGS[@]}" \
+  --env OLLAMA_HOST="0.0.0.0" \
   --env OLLAMA_DEBUG=1 \
   --env OLLAMA_KEEP_ALIVE=-1 \
   --env OLLAMA_FLASH_ATTENTION=1 \
