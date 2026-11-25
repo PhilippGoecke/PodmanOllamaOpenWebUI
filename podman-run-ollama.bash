@@ -35,7 +35,7 @@ podman run --detach \
   --env OLLAMA_CONTEXT_LENGTH=65536 \
   --env OLLAMA_API_KEY="${OLLAMA_API_KEY:-SecureSharedSecret}" \
   --volume "$DATA_DIR:/root/.ollama:Z" \
-  --publish 127.0.0.1:11434:11434 \
+  --publish 0.0.0.0:11434:11434 \
   --name ollama \
   "$OLLAMA_IMAGE"
 
